@@ -48,7 +48,7 @@ def home():
 @app.route('/register', methods=['POST', 'GET'])
 def register():
     if request.method == 'POST':
-        hash_password = generate_password_hash(request.form.get('password'), method='pbkdf2',
+        hash_password = generate_password_hash(request.form.get('password'), method='pbkdf2:sha256',
                                                                  salt_length=16)
         new_user = User(email=request.form.get('email').lower(), name=request.form.get('name'), password=hash_password)
         with app.app_context():
